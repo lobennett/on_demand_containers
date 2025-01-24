@@ -1,0 +1,117 @@
+cluster: "sherlock"
+
+form:
+#  - sh_python_version
+#  - sh_extra_jupyter_args
+  - service
+  - container
+#  - sh_modules
+  - sh_workspace
+  - auto_queues
+  - sh_cpus
+  - sh_gpus
+  - sh_mem
+  - sh_features
+  - bc_num_hours
+  - bc_email_on_started
+
+attributes:
+  # All of the fields below appear on the form
+  # You can modify the input types, options, labels, etc. 
+
+  sh_extra_jupyter_args:
+    label: "Extra Jupyter arguments (optional)"
+
+  # - Choose different python versions
+  sh_python_version:
+    label: "Python version"
+    widget: select
+    options:
+      - [ "Python 3.6", "py36" ]
+      - [ "Python 3.9", "py39" ]
+    value: "py39"
+
+  # - Choose different IDEs to load into
+  service:
+    label: "IDE"
+    widget: select
+    options:
+      - ["JupyterLab", "jupyter" ]
+      - ["VS Code", "code-server" ]
+
+  # - Choose which container to load into
+  container:
+    label: "Container/Environment"
+    widget: select
+    options:
+      - "base"
+      # You can add other options here to select from
+      # E.g., 
+      # - name_of_my_container 
+
+  # - Choose which modules to load 
+  sh_modules:
+    label: "Additional modules (optional)"
+    help: |
+      <small>
+      Space separated list of additional modules to load</br/> Full list at https://www.sherlock.stanford.edu/docs/software/list
+      </small>
+
+  # - Choose which directory to load into 
+  sh_workspace:
+    label: Workspace (optional)
+    help: |
+      Optionally select a folder to start the server in (the default is your `$HOME` directory).
+    data-filepicker: true
+    data-target-file-type: dirs
+    data-default-directory: '$HOME'
+    readonly: true
+    value: '$HOME'
+
+  # - Chooose which partition to submit job to 
+  auto_queues:
+    label: "Partition"
+    value: "dev"
+    required: true
+    display: true
+    help: |
+      <small>Partition to submit the job to</small>
+
+  # - Choose number of CPUs
+  sh_cpus:
+    label: "#CPUs"
+    widget: "number_field"
+    required: true
+    min: 1
+    value: "1"
+    help: |
+      <small>Number of CPU cores to allocate</small>
+
+  # - Choose number of GPUs 
+  sh_gpus:
+    label: "#GPUs (optional)"
+    widget: "number_field"
+    min: 1
+    max: 8
+    value: ""
+    help: |
+      <small>
+      Number of GPUs to allocate (don't forget to load the `cuda` module in the `Additional modules` field above and to select a partition with GPUs)
+      </small>
+
+  #- Choose amount of memory (GB)
+  sh_mem:
+    label: "Memory (GB) (optional)"
+    widget: "number_field"
+    help: |
+      <small>Amount of memory to allocate</small>
+
+  # Other features
+  sh_features:
+    label: "Additional node features (optional)"
+    help: |
+      <small>Additional <a href="https://www.sherlock.stanford.edu/docs/advanced-topics/node-features/">node features</a> to request, expressed as job contraints</small>
+
+  #- Choose amount of runtime (hours)
+  bc_num_hours:
+    label: "Runtime (in hours)"
