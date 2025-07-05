@@ -1,18 +1,18 @@
 #!/bin/bash
 
-#SBATCH --job-name=pull_image
+#SBATCH --job-name=download_container
 #SBATCH --time=01:00:00
 #SBATCH --cpus-per-task=4
 #SBATCH --mem-per-cpu=4G
-#SBATCH --output=./log/pull_image-%j.out
-#SBATCH --error=./log/pull_image-%j.err
+#SBATCH --output=./log/download_container-%j.out
+#SBATCH --error=./log/download_container-%j.err
 
 # Pull apptainer image for containerized processing
 # Can be run standalone or as a SLURM job
 # 
 # IMPORTANT: For large containers, this script may fail with memory errors on login nodes.
 # If you encounter "squash error" or memory-related failures, submit this script via SLURM:
-#   sbatch pull_image.sh docker://your_container_uri
+#   sbatch download_container.sh docker://your_container_uri
 #
 # This script includes SLURM directives at the top for job submission.
 
