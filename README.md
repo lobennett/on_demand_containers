@@ -6,8 +6,8 @@ Launch containerized applications (JupyterLab or VS Code) on Sherlock via OnDema
 
 **Important**: Your containers must have JupyterLab and/or code-server installed to work with this application.
 
-- **JupyterLab**: Must be accessible via `jupyter lab` command
-- **VS Code**: Must have `code-server` installed and accessible
+- **JupyterLab**: Must be accessible via the [jupyter lab command](./template/script.sh.erb#L42)
+- **VS Code**: Must be accessible via the [code-server command](./template/script.sh.erb#L55)
 
 ## Quick Start Example
 
@@ -21,11 +21,9 @@ Here's a complete working example using Stanford's computational environment con
    cd $HOME/ondemand/dev/on_demand_containers
    ```
 
-2. **Add the container** (recommended for large containers):
+2. **Add a container**:
    ```bash
    sbatch download_container.sh docker://scr.svc.stanford.edu/bil-public/comp-env/ce
-   # Wait for job to complete, then run:
-   ./refresh_form.sh
    ```
 
 3. **Access your app**:
@@ -40,21 +38,13 @@ Here's a complete working example using Stanford's computational environment con
 
 For smaller containers, you can use the simple one-command approach:
 ```bash
-./add_container.sh docker://python:3.9
+./add_container.sh docker://container_uri
 ```
 
 For larger containers, use sbatch to avoid memory issues:
 ```bash
-sbatch download_container.sh docker://tensorflow/tensorflow:latest
-# Wait for job to complete, then run:
-./refresh_form.sh
+sbatch download_container.sh docker://container_uri
 ```
-
-## Container Sources
-
-- **Stanford Registry**: `docker://scr.svc.stanford.edu/bil-public/comp-env/ce` (recommended)
-- **Docker Hub**: `docker://python:3.9`, `docker://tensorflow/tensorflow:latest`
-- **Any Docker registry**: Use `docker://` format
 
 ## Troubleshooting
 
@@ -73,8 +63,8 @@ sbatch download_container.sh docker://container_uri
 
 If you prefer step-by-step control:
 ```bash
-./download_container.sh docker://scr.svc.stanford.edu/bil-public/comp-env/ce  # Download container
-./refresh_form.sh                                                             # Update form options
+./download_container.sh docker://container_uri # Download container
+./refresh_form.sh                              # Update form options
 ```
 
 ## File Structure
