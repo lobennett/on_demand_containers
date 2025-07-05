@@ -14,16 +14,22 @@ PASSWORD_SHA1=$(echo -n "${password}${SALT}" | openssl dgst -sha1 | awk '{print 
 # Launch based on which container is selected. 
 echo "Connection details: ${container} ${service}"
 
-# Get container path based on selection
-if [ "${container}" == "base" ]; then
-    CONTAINER_PATH="/scratch/users/logben/.apptainer/base.sif"
-    INSTANCE_NAME="base"
-# - Optional: Add another container option 
-# elif [ "${container}" == "name_of_my_container" ]; then
-#     CONTAINER_PATH="/path/to/name_of_my_container"
-#     INSTANCE_NAME="name_of_my_container"
+# Set apptainer directory with fallback logic
+if [ -n "$SCRATCH" ] && [ -d "$SCRATCH" ]; then
+    APPTAINER_DIR="$SCRATCH/.apptainer/on_demand_containers"
 else
-    echo "Invalid container selection"
+    APPTAINER_DIR="$(pwd)/apptainer"
+fi
+
+# Get container path based on selection
+CONTAINER_FILE="${APPTAINER_DIR}/${container}.sif"
+if [ -f "$CONTAINER_FILE" ]; then
+    CONTAINER_PATH="$CONTAINER_FILE"
+    INSTANCE_NAME="${container}"
+else
+    echo "Container not found: $CONTAINER_FILE"
+    echo "Available containers in $APPTAINER_DIR:"
+    ls -1 "$APPTAINER_DIR"/*.sif 2>/dev/null | xargs -n 1 basename | sed 's/\.sif$//' || echo "No containers found"
     exit 1
 fi
 

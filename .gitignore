@@ -1,0 +1,8 @@
+# Backup files
+*.backup
+
+# SLURM log files
+log/
+
+# Apptainer images
+apptainer/*.sif

@@ -1,6 +1,11 @@
 ---
-name: name_of_application
-category: category_name
-subcategory: sub_category_name
+name: Launch containers
+category: Custom 
+subcategory: Apps
 role: batch_connect
-description: "description_of_application\r\n"
+description: |
+    This app will launch a containerized [JupyterLab] or [VS Code] server on [Sherlock]
+    [JupyterLab]: https://www.jupyter.org
+    [VS Code]: https://code.visualstudio.com/
+    [Sherlock]: https://www.sherlock.stanford.edu
+icon: icon.png
