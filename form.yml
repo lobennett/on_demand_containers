@@ -44,9 +44,7 @@ attributes:
     label: "Container/Environment"
     widget: select
     options:
-      - ["scr.svc.stanford.edu_bil-public_comp-env_ce", "scr.svc.stanford.edu_bil-public_comp-env_ce"]
-      - ["ubuntu_latest", "ubuntu_latest"]
-
+  
   # - Choose which modules to load 
   sh_modules:
     label: "Additional modules (optional)"
