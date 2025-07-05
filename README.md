@@ -23,7 +23,7 @@ Here's a complete working example using Stanford's computational environment con
 
 2. **Add a container**:
    ```bash
-   sbatch download_container.sh docker://scr.svc.stanford.edu/bil-public/comp-env/ce
+   sbatch add_container.sh docker://scr.svc.stanford.edu/bil-public/comp-env/ce
    ```
 
 3. **Access your app**:
@@ -43,7 +43,7 @@ For smaller containers, you can use the simple one-command approach:
 
 For larger containers, use sbatch to avoid memory issues:
 ```bash
-sbatch download_container.sh docker://container_uri
+sbatch add_container.sh docker://container_uri
 ```
 
 ## Troubleshooting
