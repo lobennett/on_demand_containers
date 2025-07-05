@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Simple script to add a container to OnDemand
-# Usage: ./add_container.sh docker://ubuntu:latest
+# Usage: ./add_container.sh docker://container_uri
 
 set -e  # Exit on any error
 
@@ -11,8 +11,8 @@ if [ -z "$1" ]; then
     echo ""
     echo "Examples:"
     echo "  $0 docker://scr.svc.stanford.edu/bil-public/comp-env/ce"
-    echo "  $0 docker://python:3.9"
-    echo "  $0 docker://tensorflow/tensorflow:latest"
+    echo "  $0 docker://codercom/code-server"
+    echo "  $0 docker://jupyter/datascience-notebook"
     echo ""
     echo "This script will:"
     echo "  1. Download the container image"
